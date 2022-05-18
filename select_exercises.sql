@@ -9,9 +9,10 @@ select count(distinct(artist)) from albums;
 -- 3c.Primary key for album is ID column
 
 
-select release_date from albums;
+select release_date from albums
+order by release_date;
 -- 3d.What is the oldest release date for any album in the albums table? What is the most recent release date?
--- ans 3d.
+-- ans 3d.oldest 1967 and most recent= 2011
 
 
 
@@ -23,7 +24,7 @@ select name from albums where artist='Pink Floyd';
 
 
 -- b. The year Sgt. Pepper's Lonely Hearts Club Band was released
-
+select release_date from albums where artist='Sgt.Pepper' & name='Lonely Hearts Club Band';
 
 -- c. The genre for the album Nevermind
 select genre from albums where name='Nevermind';
