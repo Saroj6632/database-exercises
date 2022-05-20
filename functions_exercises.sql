@@ -18,7 +18,8 @@ FROM
 WHERE
     birth_date LIKE '1%-12-25'
         AND (hire_date BETWEEN '1900-1-1' AND '1999-12-31');
-select min(salary), max(salary) from salaries;
+select min(salary), max(salary) from salaries
+where to_date > now();
 
 #6.
 SELECT 
@@ -27,8 +28,8 @@ SELECT
     lower(CONCAT(SUBSTR(last_name, 1, 1),
                     substr(first_name, 1, 4),
                     '_',
-                    MONTH(birth_date),
-                    substr(birth_date,2,2))) as user_name
+                    substr(birth_date,6,2),
+                    substr(birth_date,3,2))) as user_name
 FROM
     employees; 
 
