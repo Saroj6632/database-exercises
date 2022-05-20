@@ -47,10 +47,17 @@ having count_of_username >1;
 select emp_no, avg(salary) from salaries
 group by emp_no;
 
+
 #10
-select dept_no, to_date as current_employee from dept_emp
+select dept_no, to_date as current_employee,count(*) as total_employee from dept_emp
 where to_date > now()
 group by dept_no,current_employee;
+
+##
+
+select  emp_no,salary, count(emp_no)as same_employee from salaries
+group by emp_no, salary;
+
 ##
 select emp_no,max(salary) from salaries
 group by emp_no;
