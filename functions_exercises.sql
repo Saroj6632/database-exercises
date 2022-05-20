@@ -28,7 +28,7 @@ SELECT
                     substr(first_name, 1, 4),
                     '_',
                     MONTH(birth_date),
-                    right(YEAR('birth_date',2)))) as user_name
+                    substr(birth_date,2,2))) as user_name
 FROM
     employees; 
 
