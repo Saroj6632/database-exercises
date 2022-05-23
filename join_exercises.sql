@@ -41,13 +41,13 @@ where employees.gender='F';
 
 
 -- #Q.no 4 Find the current titles of employees currently working in the Customer Service department.
-select titles.title, count(*)
+select title,count(title),dept_name
 from titles
 join dept_emp on titles.emp_no =dept_emp.emp_no
 join departments on dept_emp.dept_no = departments.dept_no
-where titles.to_date ='9999-01-01'
-   and dept_emp.to_date ='9999-01-01'
-   and departments.dept_name='CustomerService'
+where titles.to_date > now()
+   and dept_emp.to_date >now()
+   and departments.dept_name='Customer Service'
  group by titles.title;
 
 
@@ -109,14 +109,32 @@ ORDER BY salary DESC;
 
 
 #q.no10 Determine the average salary for each department. Use all salary information and round your results.
-select AVG(salary) as 'department_average_salary', dept_name
+select AVG(salary) as 'dvs', dept_name, ROUND('dvs',2) as rounded
 from salaries
 join dept_emp on salaries.emp_no = dept_emp.emp_no
 join departments on dept_emp.dept_no = departments.dept_no
 group by dept_name;
 
+
 # Bonus Find the names of all current employees, their department name, and their current manager's name.
+select concat(employees.first_name,' ',employees.last_name)as employee_name, dept_name, dept_manager.dept_no
+from employees
+join dept_emp on employees.emp_no =dept_emp.emp_no
+join dept_manager on dept_emp.dept_no =dept_manager.dept_no
+join departments on dept_emp.dept_no = departments.dept_no
+where dept_manager.to_date > now();
+
+
+
 # Bonus Who is the highest paid employee within each department.
+select salary,concat(employees.first_name,' ',employees.last_name)as employee_name, dept_name
+from employees
+join salaries on employees.emp_no = salaries.emp_no
+join dept_emp on employees.emp_no =  dept_emp.emp_no
+join departments on dept_emp.dept_no = departments.dept_no;
+
+
+
 
 
 
